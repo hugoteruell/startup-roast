@@ -22,6 +22,7 @@
   --font-display: var(--font-display), system-ui, sans-serif;
   --font-serif: var(--font-serif), "Georgia", serif;
   --font-body: var(--font-body), system-ui, sans-serif;
+  --font-hand: var(--font-hand), "Marker Felt", "Comic Sans MS", cursive;
 }
 
 body {
@@ -86,24 +87,38 @@ body {
 .btn-primary {
   background: var(--color-text);
   color: var(--color-bg);
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 16px;
-  padding: 16px 22px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  padding: 18px 24px;
   border-radius: 14px;
-  border: 0;
+  border: 2px solid var(--color-text);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   cursor: pointer;
-  transition: opacity 120ms, transform 80ms;
+  transition: transform 120ms, box-shadow 120ms;
   text-align: center;
   width: 100%;
+  transform: rotate(-0.6deg);
+  box-shadow: 4px 4px 0 var(--color-accent);
 }
-.btn-primary:hover:not(:disabled) { opacity: 0.92; }
-.btn-primary:active:not(:disabled) { transform: scale(0.99); }
-.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-primary:hover:not(:disabled) {
+  transform: rotate(0deg) translate(-1px, -1px);
+  box-shadow: 6px 6px 0 var(--color-accent);
+}
+.btn-primary:active:not(:disabled) {
+  transform: rotate(0deg) translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--color-accent);
+}
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
 
 .btn-secondary {
   background: transparent;
@@ -245,6 +260,49 @@ body {
   justify-content: center;
   color: var(--color-text-mute);
   font-size: 14px;
+}
+
+/* ---------- Sloppy/fun additions ---------- */
+
+/* Handwritten asides — Caveat, used sparingly */
+.hand {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+/* Tilts — subtle, ‑2° to +2° */
+.tilt-l1 { transform: rotate(-1.2deg); }
+.tilt-l2 { transform: rotate(-2deg); }
+.tilt-r1 { transform: rotate(1.2deg); }
+.tilt-r2 { transform: rotate(2deg); }
+
+/* Marker highlight — yellow streak behind text */
+.marker {
+  background: linear-gradient(
+    180deg,
+    transparent 52%,
+    rgba(217, 119, 87, 0.32) 52%,
+    rgba(217, 119, 87, 0.32) 88%,
+    transparent 88%
+  );
+  padding: 0 4px;
+}
+
+/* Scribble underline — hand-drawn squiggle SVG */
+.scribble {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10'><path d='M2 7 Q 16 1, 30 6 T 60 5 T 90 6 T 118 5' stroke='%23d97757' stroke-width='2.2' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 8px;
+  padding-bottom: 6px;
+}
+
+/* Hand-drawn arrow accent */
+.arrow-down {
+  display: inline-block;
+  font-family: var(--font-hand);
+  font-weight: 700;
 }
 
 /* Crossfade stack */

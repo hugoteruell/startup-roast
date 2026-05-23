@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Inter_Tight, Fraunces, Caveat } from "next/font/google";
+import { Inter, Inter_Tight, Fraunces, Architects_Daughter } from "next/font/google";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -13,10 +13,10 @@ const serif = Fraunces({
   axes: ["SOFT", "WONK", "opsz"],
 });
 const inter = Inter({ variable: "--font-body", subsets: ["latin"] });
-const hand = Caveat({
+const hand = Architects_Daughter({
   variable: "--font-hand",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {

@@ -39,8 +39,11 @@ export default function RoastForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-5">
-      <label className="flex flex-col gap-2">
+      <label className="flex flex-col gap-2 relative">
         <span className="text-sm text-text-soft">your name <span className="text-text-mute">(for the tombstone)</span></span>
+        <span className="hand text-xl text-accent tilt-l1 absolute -top-5 right-0 select-none pointer-events-none">
+          yes, the real one ↓
+        </span>
         <input
           value={founderName}
           onChange={(e) => setFounderName(e.target.value)}

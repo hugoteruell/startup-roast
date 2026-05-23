@@ -87,10 +87,13 @@ export default async function RoastPage({ params }: Props) {
 
         {/* Score + meme roast */}
         <header className="flex flex-col gap-3">
-          <div className="flex items-baseline gap-3 flex-wrap">
-            <span className="score text-4xl font-bold">{roast.survival_score?.toFixed(1)} / 10</span>
+          <div className="flex items-baseline gap-3 flex-wrap relative">
+            <span className="score text-4xl font-bold tilt-l1 inline-block">
+              {roast.survival_score?.toFixed(1)} / 10
+            </span>
+            <span className="hand text-2xl text-accent tilt-r2 select-none">← yikes</span>
             {roast.verdict_pill && (
-              <span className="h-serif-italic text-text-soft text-lg">
+              <span className="h-serif-italic text-text-soft text-lg w-full">
                 {roast.verdict_pill}
               </span>
             )}
@@ -111,7 +114,10 @@ export default async function RoastPage({ params }: Props) {
             </h2>
             <ul className="flex flex-col gap-3">
               {tips.map((tip, i) => (
-                <li key={i} className="surface p-4 flex gap-3">
+                <li
+                  key={i}
+                  className={`surface p-4 flex gap-3 ${i === 0 ? "tilt-l1" : i === 1 ? "tilt-r1" : "tilt-l1"}`}
+                >
                   <span className="text-accent text-base leading-none mt-0.5 font-bold" aria-hidden>
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -129,11 +135,8 @@ export default async function RoastPage({ params }: Props) {
 
         {/* CTAs */}
         <div className="flex flex-col gap-3 mt-2">
-          <ShareButton
-            slug={roast.slug}
-            text={`${roast.company_name} · ${roast.survival_score?.toFixed(1)}/10: "${roast.absurd_prediction}"`}
-          />
-          <Link href="/hall" className="btn-secondary">
+          <ShareButton slug={roast.slug} />
+          <Link href={`/hall?from=${roast.slug}`} className="btn-secondary">
             see hall of shame
           </Link>
           <Link href="/roast/new" className="text-center text-sm text-text-mute hover:text-text-soft mt-1">

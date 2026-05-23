@@ -26,7 +26,7 @@ export default async function Home() {
           <header className="flex flex-col gap-3">
             <h1 className="h-display text-[40px] sm:text-[44px] leading-[1.08] tracking-tight font-bold">
               tired of your mom saying it&apos;s a{" "}
-              <span className="text-accent">great idea?</span>
+              <span className="marker text-accent">great idea?</span>
             </h1>
             <p className="text-base text-text-soft leading-snug">
               drop your startup here. we&apos;ll give you an honest opinion — and a painting to remember it by.

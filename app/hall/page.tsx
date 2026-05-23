@@ -3,7 +3,14 @@ import { listWorstRoasts } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
-export default async function HallPage() {
+export default async function HallPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
+  const { from } = await searchParams;
+  const backHref = from ? `/roast/${from}` : "/";
+
   let rows = await listWorstRoasts(40, 24).catch(() => []);
   if (rows.length < 5) {
     rows = await listWorstRoasts(40).catch(() => []);
@@ -13,13 +20,16 @@ export default async function HallPage() {
     <main className="flex-1 flex flex-col">
       <div className="mx-auto max-w-md w-full px-5 py-6 flex flex-col gap-5">
 
-        <Link href="/" className="eyebrow hover:text-text">← back</Link>
+        <Link href={backHref} className="eyebrow hover:text-text">← back</Link>
 
-        <header className="flex items-start justify-between gap-3">
+        <header className="flex items-start justify-between gap-3 relative">
           <div className="flex flex-col gap-1">
-            <h1 className="h-display text-4xl font-bold">hall of shame</h1>
+            <h1 className="h-display text-4xl font-bold">hall of <span className="scribble">shame</span></h1>
             <p className="text-text-soft text-sm">today&apos;s most brutal verdicts</p>
           </div>
+          <span className="hand text-xl text-accent tilt-r2 absolute -top-2 right-0 select-none">
+            ★ enjoy
+          </span>
         </header>
 
         {rows.length === 0 ? (

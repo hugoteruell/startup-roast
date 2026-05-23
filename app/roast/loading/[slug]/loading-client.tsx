@@ -86,8 +86,13 @@ export default function LoadingClient({ slug, cycle }: { slug: string; cycle: Cy
         )}
 
         {item && (
-          <section className="flex flex-col gap-3">
-            <div className="eyebrow">Previously Roasted</div>
+          <section className="flex flex-col gap-3 relative">
+            <div className="flex items-center justify-between">
+              <div className="eyebrow">Previously Roasted</div>
+              <span className="hand text-xl text-accent tilt-r1 select-none">
+                victim №{((idx % 99) + 1).toString().padStart(2, "0")}
+              </span>
+            </div>
             <div className="flex items-center gap-3">
               <div
                 className="avatar"
